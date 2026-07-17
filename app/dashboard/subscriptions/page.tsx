@@ -4,15 +4,7 @@ import { getUserSubscriptions } from "@/lib/actions"; // Import the function to 
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { DeleteSubscription } from "../subscriptions/actions";
-
-
-interface Subscription {
-    id: string;
-    name: string;
-    cost: number;
-    cycle: string;
-    nextRenewal: string;
-}
+import { Subscription } from "@/types/subscription";
 
 export default async function SubscriptionsPage() {
         const {userId } = await auth();
@@ -40,13 +32,13 @@ const subscriptions = await getUserSubscriptions(userId);
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                    {subscriptions.map((sub) => (
+                    {subscriptions.map((sub:Subscription) => (
                         <tr key={sub.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{sub.name}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">₹{sub.cost.toFixed(2)}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{sub.cycle}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{sub.nextRenewal}</td>
-  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{sub.nextRenewal instanceof Date ? sub.nextRenewal.toLocaleDateString() : sub.nextRenewal}</td>
+       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
 <div className="flex gap-4 mt-6 w-full max-w-md">
   <Link 
     href={`/dashboard/edit-sub/${sub.id}`} 

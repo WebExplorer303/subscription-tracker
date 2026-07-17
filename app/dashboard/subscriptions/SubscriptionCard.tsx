@@ -1,15 +1,7 @@
 import { Calendar, DollarSign, CreditCard } from "lucide-react";
+import { Subscription } from "@/types/subscription";
 
-interface SubscriptionCardProps {
-  subscription: {
-    name: string;
-    cost: number;
-    cycle: string;
-    nextRenewal: string;
-  };
-}
-
-export function SubscriptionCard({ subscription }: SubscriptionCardProps) {
+export function SubscriptionCard( subscription : Subscription) {
   return (
     <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all group">
       <div className="flex justify-between items-start mb-4">

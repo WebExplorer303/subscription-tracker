@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getUserSubscriptions } from "@/lib/actions";
 import { checkAndRequestRenewalUpdates } from "./dashboard/subscriptions/actions";
+import { Subscription } from "@/types/subscription";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -14,7 +15,7 @@ export default async function DashboardPage() {
 
   const subscriptions = await getUserSubscriptions(userId);
 
-  const totalMonthly = subscriptions.reduce((acc, sub) => {
+  const totalMonthly = subscriptions.reduce((acc: number, sub: Subscription) => {
     return acc + (sub.cycle === "monthly" ? sub.cost : sub.cost / 12);
   }, 0);
 

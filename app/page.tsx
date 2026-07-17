@@ -11,6 +11,8 @@ export default async function DashboardPage() {
     redirect("/sign-up");
   }
 
+  await auth.protect();
+  
   await checkAndRequestRenewalUpdates(userId);
 
   const subscriptions = await getUserSubscriptions(userId);

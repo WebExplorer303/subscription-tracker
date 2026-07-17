@@ -3,16 +3,16 @@ import { prisma as db } from "@/lib/prisma"; // Use the prisma.ts file as the cl
 import { getUserSubscriptions } from "@/lib/actions"; // Import the function to get user subscriptions
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { DeleteSubscription } from "../subscriptions/actions";
+import { DeleteSubscription } from "./actions";
 import { Subscription } from "@/types/subscription";
 
 export default async function SubscriptionsPage() {
-        const {userId } = await auth();
-    
-        if (!userId) {
-            redirect("/sign-in");
-        }
-const subscriptions = await getUserSubscriptions(userId);
+    const { userId } = await auth();
+
+    if (!userId) {
+        redirect("/sign-in");
+    }
+    const subscriptions = await getUserSubscriptions(userId);
     return (
         <>
             <div className="max-w-4xl">
@@ -32,36 +32,36 @@ const subscriptions = await getUserSubscriptions(userId);
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                    {subscriptions.map((sub:Subscription) => (
+                    {subscriptions.map((sub: Subscription) => (
                         <tr key={sub.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{sub.name}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">₹{sub.cost.toFixed(2)}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{sub.cycle}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{sub.nextRenewal instanceof Date ? sub.nextRenewal.toLocaleDateString() : sub.nextRenewal}</td>
-       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-<div className="flex gap-4 mt-6 w-full max-w-md">
-  <Link 
-    href={`/dashboard/edit-sub/${sub.id}`} 
-    className="flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors font-medium"
-  >
-    Edit
-  </Link>
-  
-  <form 
-    action={async () => {
-      "use server";
-      await DeleteSubscription(sub.id);
-    }}
-    className="flex-1"
-  >
-    <button 
-      type="submit" 
-      className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors font-medium"
-    >
-      Delete
-    </button>
-  </form>
-</div>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div className="flex gap-4 mt-6 w-full max-w-md">
+                                    <Link
+                                        href={`/dashboard/edit-sub/${sub.id}`}
+                                        className="flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors font-medium"
+                                    >
+                                        Edit
+                                    </Link>
+
+                                    <form
+                                        action={async () => {
+                                            "use server";
+                                            await DeleteSubscription(sub.id);
+                                        }}
+                                        className="flex-1"
+                                    >
+                                        <button
+                                            type="submit"
+                                            className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors font-medium"
+                                        >
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     ))}

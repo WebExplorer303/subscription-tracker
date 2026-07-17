@@ -1,14 +1,14 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getUserSubscriptions } from "@/lib/actions";
-import { checkAndRequestRenewalUpdates } from "./dashboard/subscriptions/actions";
+import { checkAndRequestRenewalUpdates } from "./subscriptions/actions";
 import { Subscription } from "@/types/subscription";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
 
   if (!userId) {
-    redirect("/auth/sign-up");
+    redirect("/sign-up");
   }
 
   await auth.protect();

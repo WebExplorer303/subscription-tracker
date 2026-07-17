@@ -1,10 +1,10 @@
-import SubscriptionDonut from "../analytics/chart";
+import SubscriptionDonut from "./chart";
 import { prisma } from "../../../lib/prisma";
 import { Overview } from "@/components/overview";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getUserSubscriptions } from "@/lib/actions";
-import SubscriptionList from "../analytics/sublist";
+import SubscriptionList from "./sublist";
 
 
 

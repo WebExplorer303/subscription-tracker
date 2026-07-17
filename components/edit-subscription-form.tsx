@@ -1,6 +1,6 @@
 "use client";
 
-import { EditSubscription } from "../app/dashboard/subscriptions/actions";
+import { EditSubscription } from "../app/(dashboard)/subscriptions/actions";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { Subscription } from "@/types/subscription";
@@ -59,9 +59,9 @@ export default function EditSubscriptionForm({ subscription }: { subscription: S
                         name="nextRenewal"
                         required
                         className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                        defaultValue={subscription.nextRenewal instanceof Date 
-    ? subscription.nextRenewal.toISOString().split('T')[0] 
-    : new Date(subscription.nextRenewal).toISOString().split('T')[0]}
+                        defaultValue={subscription.nextRenewal instanceof Date
+                            ? subscription.nextRenewal.toISOString().split('T')[0]
+                            : new Date(subscription.nextRenewal).toISOString().split('T')[0]}
                     />
                 </div>
 

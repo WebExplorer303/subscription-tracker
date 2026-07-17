@@ -1,6 +1,6 @@
 "use client";
 
-import { EditSubscription } from "@/app/dashboard/subscriptions/actions";
+import { EditSubscription } from "@/app/(dashboard)/subscriptions/actions";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 

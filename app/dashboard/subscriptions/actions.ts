@@ -120,7 +120,7 @@ export async function checkAndRequestRenewalUpdates(userId: string) {
   if (overdueSubscriptions.length === 0) return;
 
   await prisma.$transaction(
-    overdueSubscriptions.map((sub) => {
+    overdueSubscriptions.map((sub:Subscription) => {
       const dateString = typeof sub.nextRenewal === "string" ? sub.nextRenewal.split("T")[0] : sub.nextRenewal;
       const renewalDate = new Date(`${dateString}T00:00:00`);
 

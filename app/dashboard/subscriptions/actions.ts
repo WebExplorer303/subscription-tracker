@@ -110,7 +110,7 @@ export async function checkAndRequestRenewalUpdates(userId: string) {
     where: { userId: userId },
   });
 
-  const overdueSubscriptions = subscriptions.filter((sub) => {
+  const overdueSubscriptions = subscriptions.filter((sub:Subscription) => {
     const dateString = typeof sub.nextRenewal === "string" ? sub.nextRenewal.split("T")[0] : sub.nextRenewal;
     const renewalDate = new Date(`${dateString}T00:00:00`);
     return renewalDate < today;

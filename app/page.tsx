@@ -8,11 +8,11 @@ export default async function DashboardPage() {
   const { userId } = await auth();
 
   if (!userId) {
-    redirect("/sign-up");
+    redirect("/auth/sign-up");
   }
 
   await auth.protect();
-  
+
   await checkAndRequestRenewalUpdates(userId);
 
   const subscriptions = await getUserSubscriptions(userId);

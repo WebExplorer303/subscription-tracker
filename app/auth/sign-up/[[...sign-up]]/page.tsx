@@ -1,4 +1,4 @@
-import SignUpPage from "../../../components/sign-up";
+import SignUpPage from "@/components/sign-up";
 import { ClerkProvider } from '@clerk/nextjs'
 
 

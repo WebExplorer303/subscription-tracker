@@ -4,9 +4,9 @@ import Navbar from "@/components/navbar";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <Navbar />
-      <main>{children}</main>
-    </>
+<div className="flex flex-col md:flex-row md:h-screen bg-gray-50 dark:bg-gray-900">
+  <Navbar />
+  <main className="flex-1 overflow-y-auto p-6 sm:p-10">{children}</main>
+</div>
   );
 }

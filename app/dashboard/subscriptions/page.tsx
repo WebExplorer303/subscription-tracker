@@ -3,7 +3,7 @@ import { prisma as db } from "@/lib/prisma"; // Use the prisma.ts file as the cl
 import { getUserSubscriptions } from "@/lib/actions"; // Import the function to get user subscriptions
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { DeleteSubscription } from "./actions";
+import { DeleteSubscription } from "../../../lib/actions";
 import { Subscription } from "@/types/subscription";
 
 export default async function SubscriptionsPage() {

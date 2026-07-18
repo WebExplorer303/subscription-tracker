@@ -1,7 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
-import { addSubscription } from './actions';
+import { addSubscription } from '../../../lib/actions';
 import { Loader2, PlusCircle } from 'lucide-react';
 
 export function SubscriptionForm() {
@@ -19,7 +19,7 @@ export function SubscriptionForm() {
             className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all placeholder:text-slate-400"
           />
         </div>
-        
+
         <div className="space-y-2">
           <label htmlFor="cost" className="text-sm font-medium text-slate-700">Monthly Cost (₹)</label>
           <input
@@ -34,8 +34,8 @@ export function SubscriptionForm() {
 
         <div className="space-y-2">
           <label htmlFor="cycle" className="text-sm font-medium text-slate-700">Billing Cycle</label>
-          <select 
-            name="cycle" 
+          <select
+            name="cycle"
             className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
           >
             <option value="monthly">Monthly</option>

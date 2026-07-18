@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import { useState } from "react";
+import "@tabler/icons-webfont/dist/tabler-icons.css";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);

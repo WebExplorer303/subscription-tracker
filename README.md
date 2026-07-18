@@ -2,7 +2,7 @@ Subscription Tracker
 
 A small full-stack app I built to keep tabs on recurring subscriptions — the kind of thing that starts as "let me just track my Netflix and Spotify" and turns into an actual project once you realize how easy it is to lose track of what you're paying for every month.
 
-Live demo: subscription-tracker-delta-cyan.vercel.app
+Domain: subscription-tracker-delta-cyan.vercel.app
 
 What it does
 
